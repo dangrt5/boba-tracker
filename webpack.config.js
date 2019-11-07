@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
               options: {
                 name: "[contenthash:8].[ext]",
                 adapter: require("responsive-loader/sharp"),
-                sizes: devMode ? [2000] : sizes,
+                // sizes: devMode ? [2000] : sizes,
                 disable: devMode
               }
             }

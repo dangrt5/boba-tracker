@@ -12,7 +12,8 @@
   "scripts": {
     "client": "webpack-dev-server --progress --host --hot --inline --devtool eval-source-map --colors --mode development --port 3000",
     "server": "nodemon ./server/index.js",
-    "dev": "concurrently \"yarn client\" \"yarn server\""
+    "dev": "concurrently \"yarn client\" \"yarn server\"",
+    "build": "webpack --mode production --progress"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
