@@ -42,7 +42,7 @@ app.use("/api/retrieve-items", async (req, res, next) => {
     `;
 
     const response = await post({
-      url: "https://postgres-graphql1.herokuapp.com/v1/graphql",
+      url: HASURA_TABLE_API,
       headers: {
         "x-hasura-admin-secret": secretKey,
         "content-type": "application/json"
