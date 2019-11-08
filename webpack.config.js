@@ -130,6 +130,9 @@ module.exports = (env, argv) => {
     ],
     resolve: {
       extensions: [".js", ".jsx", ".scss"]
+    },
+    output: {
+      publicPath: "/"
     }
   };
 
