@@ -1,0 +1,23 @@
+.header-container {
+  background: #adada5;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.8rem;
+}
+
+.links {
+  display: flex;
+  font-size: 1.4rem;
+
+  li {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  li:not(:last-of-type) {
+    margin-right: 1.2rem;
+  }
+}
