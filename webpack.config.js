@@ -163,5 +163,14 @@ module.exports = (env, argv) => {
     }
   };
 
+  if (!devMode) {
+    webpackConfig.plugins = webpackConfig.plugins.concat([
+      new MiniCssExtractPlugin({
+        filename: "[contenthash:8].css",
+        chunkFilename: "[contenthash:8].css"
+      })
+    ]);
+  }
+
   return webpackConfig;
 };
