@@ -21,11 +21,35 @@ module.exports = (env, argv) => {
           }
         ],
         ["@babel/preset-react", { development: devMode }]
+      ],
+      plugins: [
+        ["@babel/plugin-transform-react-jsx"],
+        [
+          "react-css-modules",
+          {
+            filetypes: {
+              ".scss": { syntax: "postcss-scss", plugins: ["postcss-nested"] },
+              ".sass": { syntax: "postcss-sass", plugins: ["postcss-nested"] }
+            },
+            handleMissingStyleName: "throw",
+            autoResolveMultipleImports: true,
+            webpackHotModuleReloading: devMode,
+            generateScopedName: scopedClassNames
+          }
+        ]
       ]
     }
   };
 
   const webpackConfig = {
+    entry: {
+      index: [
+        "core-js/stable",
+        "regenerator-runtime/runtime",
+        // "raf/polyfill",
+        "./src/index.js"
+      ]
+    },
     module: {
       rules: [
         {
@@ -117,8 +141,8 @@ module.exports = (env, argv) => {
                 }
               }
             },
-            { loader: "postcss-loader", options: { sourceMap: true } },
-            { loader: "sass-loader", options: { sourceMap: true } }
+            { loader: "postcss-loader", options: { sourceMap: true } }
+            // { loader: "sass-loader", options: { sourceMap: true } }
           ]
         }
       ]
@@ -128,6 +152,9 @@ module.exports = (env, argv) => {
         template: "./src/index.html"
       })
     ],
+    devServer: {
+      overlay: devMode
+    },
     resolve: {
       extensions: [".js", ".jsx", ".scss"]
     },
