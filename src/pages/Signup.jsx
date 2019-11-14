@@ -1,10 +1,10 @@
 import React from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
 
-const HomePage = () => {
+const Signup = () => {
   return (
     <AppContainer
-      title="Boba Tracker"
+      title="Sign Up"
       render={() => {
         return (
           <div>
@@ -16,4 +16,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Signup;

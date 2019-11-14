@@ -13,8 +13,6 @@ router.use((req, res, next) => {
 
 // Routes
 
-// router.get("/status-check", (req, res) => res.sendStatus(200).send("OK"));
-
 router.use("/login", loginRoutes);
 
 router.use("/signup", signUpRoutes);

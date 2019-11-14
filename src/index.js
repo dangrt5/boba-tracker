@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from "react-dom";
 import App from "./components/App/App";
+import { render } from "react-dom";
 import "typeface-nunito";
 import "./index.scss";
 

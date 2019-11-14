@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const pkg = require("./package.json");
 
 module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
@@ -152,16 +153,20 @@ module.exports = (env, argv) => {
         template: "./src/index.html"
       })
     ],
-    devServer: {
-      overlay: devMode
-    },
     resolve: {
-      extensions: [".js", ".jsx", ".scss"]
+      extensions: [".js", ".jsx", ".json", ".scss"]
     },
     output: {
       publicPath: "/"
     }
   };
+
+  if (devMode) {
+    webpackConfig.devServer = {
+      historyApiFallback: true,
+      overlay: true
+    };
+  }
 
   if (!devMode) {
     webpackConfig.plugins = webpackConfig.plugins.concat([
