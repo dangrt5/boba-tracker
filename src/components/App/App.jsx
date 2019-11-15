@@ -7,12 +7,24 @@ const Login = loadable(() => import("../../pages/Login"));
 const Signup = loadable(() => import("../../pages/Signup"));
 
 const App = () => {
+  const devMode = process.env.NODE_ENV === "development";
+
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={Login} />
-        <Route path="/sign-up" component={Signup} />
+        <Route
+          exact
+          path="/"
+          render={props => <HomePage devMode={devMode} {...props} />}
+        />
+        <Route
+          path="/login"
+          render={props => <Login devMode={devMode} {...props} />}
+        />
+        <Route
+          path="/sign-up"
+          render={props => <Signup devMode={devMode} {...props} />}
+        />
       </Switch>
     </Router>
   );

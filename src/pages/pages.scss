@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .img-container {
+    display: flex;
+    margin-bottom: 1.4rem;
+
+    .img {
+      max-width: 156px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .instructions {
+    width: 75%;
+    text-align: center;
+    line-height: 32px;
+    margin-bottom: 1.2rem;
+  }
+
+  .button-container {
+    display: flex;
+    align-items: center;
+
+    .button {
+      &:first-of-type {
+        margin-right: 1.6rem;
+      }
+
+      &:last-of-type {
+        margin-left: 1.6rem;
+      }
+
+      button {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .login-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &:last-of-type {
+      margin-bottom: 1.6rem;
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .instructions {
+    width: 50%;
+  }
+
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .login-input {
+      width: 50%;
+
+      &:first-of-type {
+        margin-bottom: 3.2rem;
+      }
+
+      > div {
+        width: 75%;
+      }
+    }
+  }
+}
