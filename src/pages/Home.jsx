@@ -1,6 +1,7 @@
 import React from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
 import Boba from "../shared/images/boba.svg";
+import { Button } from "@material-ui/core";
 import "./pages.scss";
 
 const HomePage = ({ history, match, ...rest }) => {
@@ -29,10 +30,22 @@ const HomePage = ({ history, match, ...rest }) => {
 
             <div styleName="button-container">
               <div styleName="button">
-                <button onClick={signupClick}>Sign Up</button>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={signupClick}
+                >
+                  Sign Up
+                </Button>
               </div>
               <div styleName="button">
-                <button onClick={loginClick}>Login</button>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={loginClick}
+                >
+                  Login
+                </Button>
               </div>
             </div>
 
