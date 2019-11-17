@@ -44,20 +44,18 @@
   }
 }
 
-.login-container {
+.form-container {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 3.2rem;
 
   .login-input {
     width: 100%;
     display: flex;
     align-items: center;
-
-    &:last-of-type {
-      margin-bottom: 1.6rem;
-    }
+    margin-bottom: 3.2rem;
 
     > div {
       width: 100%;
@@ -70,17 +68,13 @@
     width: 50%;
   }
 
-  .login-container {
+  .form-container {
     display: flex;
     align-items: center;
     justify-content: center;
 
     .login-input {
       width: 50%;
-
-      &:first-of-type {
-        margin-bottom: 3.2rem;
-      }
 
       > div {
         width: 75%;
