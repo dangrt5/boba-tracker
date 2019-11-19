@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-// SignUp Schema
-
 const User = new mongoose.Schema({
   username: {
     type: String,
@@ -26,8 +24,12 @@ User.statics = {
   async addUser(username, password) {
     const query = { username, password };
     try {
-      const data = await this.insertOne(query);
-      return data;
+      const user = await this.findOne({ username: "sjklfjdkfjladsjf" });
+
+      console.log({ user });
+      return user;
+      // const data = await this.insertOne(query);
+      // return data;
     } catch (e) {
       return e;
     }
