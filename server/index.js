@@ -1,9 +1,10 @@
 const express = require("express");
 const routes = require("./routes/index.route");
-const port = process.env.PORT || 5000;
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const client = require("./config/mongodb");
+const port = process.env.PORT || 5000;
+const db = require("./config/mongodb");
 const app = express();
 
 // Express Configuration
