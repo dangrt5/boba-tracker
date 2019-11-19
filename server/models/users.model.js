@@ -21,6 +21,15 @@ User.statics = {
     }
   },
 
+  async loginUser(username, password) {
+    const query = { username, password };
+    try {
+      return await this.findOne(query, { username, password });
+    } catch (e) {
+      return e;
+    }
+  }
+
   async addUser(username, password) {
     const query = { username, password };
     try {

@@ -1,8 +1,9 @@
 const sha256 = require("js-sha256");
-const User = require("../models/signup.model");
+const User = require("../models/users.model");
 
 const addUser = async (req, res, next) => {
-  const { username, password } = req.body.data;
+  console.log(req.body);
+  const { username, password } = req.body;
 
   if (!username || !password) {
     return res.status(400);
@@ -14,7 +15,7 @@ const addUser = async (req, res, next) => {
 
   const userFound = await User.findUser(username);
 
-  if (!userFound) {
+  if (userFound) {
     return res.sendStatus(400);
   }
 

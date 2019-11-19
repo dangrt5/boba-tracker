@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
-import { post } from "axios";
+import { post } from "../shared/request";
 import { TextField, Button, ButtonBase } from "@material-ui/core";
 import "./pages.scss";
 
@@ -23,14 +23,12 @@ const Signup = ({ devMode }) => {
   };
 
   useEffect(() => {
-    const url = `${
-      devMode ? "http://localhost:5000/api" : "/api"
-    }/signup/find-user`;
     const findUser = async () => {
       try {
-        const response = await post(url, {
+        const response = await post({
+          url: "/signup/add-user",
           data: {
-            username: "randy.danfsdafsafdg05@gmail.com",
+            username: "randy.dang@gmail.com",
             password: "fskljasklfdjslakf"
           }
         });
