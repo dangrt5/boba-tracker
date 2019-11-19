@@ -1,18 +1,6 @@
 const sha256 = require("js-sha256");
 const User = require("../models/signup.model");
 
-const findUser = async (req, res) => {
-  const { username } = req.body.data;
-
-  const response = await User.findUser(username);
-
-  if (!response) {
-    return res.json({ user: false });
-  }
-
-  res.json({ user: true });
-};
-
 const addUser = async (req, res, next) => {
   const { username, password } = req.body.data;
 
@@ -24,14 +12,20 @@ const addUser = async (req, res, next) => {
   newUser.username = username;
   newUser.password = sha256(password);
 
+  const userFound = await User.findUser(username);
+
+  if (!userFound) {
+    return res.sendStatus(400);
+  }
+
   await newUser.save((err, user) => {
     if (err) {
       return res.send(err);
     }
-    res.send(`${user} saved to db`);
+    res.json(user);
   });
 
   // console.log({ response });
 };
 
-module.exports = { findUser, addUser };
+module.exports = { addUser };
