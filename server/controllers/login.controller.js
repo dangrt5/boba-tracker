@@ -1,10 +1,16 @@
-const loginController = async (req, res, next) => {
-  try {
-    console.log("verify control");
+const User = require("../models/users.model");
+const sha256 = require("js-sha256");
 
-    res.json({ status: "hell yeah" });
-  } catch (e) {
-    next(e);
+const loginController = {
+  login: async (req, res) => {
+    const { username, password } = req.body;
+    try {
+      const response = await User.findUser(username, sha256(password));
+
+      console.log({ response });
+    } catch (e) {
+      res.sendStatus(400);
+    }
   }
 };
 
