@@ -1,33 +1,37 @@
-const client = require("../config/mongodb");
+const sha256 = require("js-sha256");
+const User = require("../models/signup.model");
 
-// function signUp(req, res, next) {
-//   try {
-//     console.log("signup controller");
-//     res.json({ status: "hello" });
-//   } catch (e) {
-//     next(e);
-//   }
-// }
+const findUser = async (req, res) => {
+  const { username } = req.body.data;
+
+  const response = await User.findUser(username);
+
+  if (!response) {
+    return res.json({ user: false });
+  }
+
+  res.json({ user: true });
+};
 
 const addUser = async (req, res, next) => {
   const { username, password } = req.body.data;
 
-  try {
-    await client.connect((err, db) => {
-      if (err) throw err;
-
-      const dbo = db.db("boba_tracker");
-      const credentials = { username, password };
-      dbo.collection("users").insertOne(credentials, (err, user) => {
-        if (err) throw err;
-        res.send({ response: `${username} added to db` });
-        db.close();
-      });
-    });
-  } catch (e) {
-    res.sendStatus(500);
-    return next(e);
+  if (!username || !password) {
+    return res.status(400);
   }
+
+  const newUser = new User();
+  newUser.username = username;
+  newUser.password = sha256(password);
+
+  await newUser.save((err, user) => {
+    if (err) {
+      return res.send(err);
+    }
+    res.send(`${user} saved to db`);
+  });
+
+  // console.log({ response });
 };
 
-module.exports = { addUser };
+module.exports = { findUser, addUser };

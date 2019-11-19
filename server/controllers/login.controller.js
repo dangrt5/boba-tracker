@@ -1,6 +1,4 @@
-const client = require("../config/mongodb");
-
-const login = async (req, res, next) => {
+const loginController = async (req, res, next) => {
   try {
     console.log("verify control");
 
@@ -10,4 +8,4 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+module.exports = loginController;
