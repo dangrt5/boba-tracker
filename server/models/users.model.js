@@ -28,7 +28,7 @@ User.statics = {
     } catch (e) {
       return e;
     }
-  }
+  },
 
   async addUser(username, password) {
     const query = { username, password };
