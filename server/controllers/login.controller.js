@@ -1,12 +1,25 @@
 const User = require("../models/users.model");
 const sha256 = require("js-sha256");
+const createError = require("http-errors");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body;
-  try {
-    const response = await User.findUser(username, sha256(password));
 
-    console.log({ response });
+  try {
+    const user = await User.findOne(
+      { username, password: sha256(password) },
+      (err, user) => {
+        if (!user) {
+          return next(createError(500, "user not found"));
+        }
+
+        return user;
+      }
+    );
+
+    res.send({ response: user, status: 200 });
   } catch (e) {
     res.sendStatus(400);
   }

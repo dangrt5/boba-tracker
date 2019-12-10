@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
 import { post } from "../shared/request";
 import { TextField, Button, ButtonBase, FormControl } from "@material-ui/core";
+import {
+  isAuthenticated,
+  user,
+  loginUser,
+  setIsAuthenticated,
+  setUser
+} from "../shared/auth";
 import styles from "./pages.scss";
 
-const Login = ({ devMode }) => {
+const Login = ({ devMode, history }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,42 +20,17 @@ const Login = ({ devMode }) => {
   };
 
   const handlePassword = e => {
-    setPassword(btoa(e.target.value));
+    setPassword(e.target.value);
   };
 
-  const handleSubmit = async e => {
-    const url = "/login/login-user";
-    try {
-      const { data } = await post({
-        url,
-        data: {
-          username,
-          password
-        }
-      });
-      console.log({ data });
-    } catch (e) {
-      console.log(e);
+  const handleSubmit = async () => {
+    const { status, response } = await loginUser(username, password);
+    if (status === 200) {
+      setIsAuthenticated(true);
+      setUser(response);
+      history.push("/dashboard");
     }
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await post(url, {
-  //         data: {
-  //           username: "helo@gmail.com",
-  //           password: "wassup@gmail.com"
-  //         }
-  //       });
-  //       console.log({ response });
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   return (
     <AppContainer
@@ -64,9 +46,10 @@ const Login = ({ devMode }) => {
               placeholder="Email Address"
             />
             <TextField
-              value={atob(password)}
+              value={password}
               onChange={handlePassword}
               styleName="login-input"
+              type="password"
               placeholder="Password"
             />
             <Button
