@@ -36,7 +36,6 @@ module.exports = {
     const { user } = req.body;
     const query = { user };
     const projection = { name: 1, quantity: 1, price: 1 };
-    console.log({ user });
 
     if (!user) {
       return next(createError(500, "no user inputted"));
