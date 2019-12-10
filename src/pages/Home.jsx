@@ -2,9 +2,12 @@ import React from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
 import Boba from "../shared/images/boba.svg";
 import { Button } from "@material-ui/core";
+import { isEmpty } from "ramda";
 import "./pages.scss";
 
-const HomePage = ({ history, match, ...rest }) => {
+const HomePage = ({ user, history, match, ...rest }) => {
+  console.log({ user });
+
   function signupClick(e) {
     history.push("/sign-up");
   }

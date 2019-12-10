@@ -14,33 +14,32 @@ const Signup = ({ devMode }) => {
   };
 
   const handlePassword = e => {
-    setPassword(btoa(e.target.value));
+    setPassword(e.target.value);
   };
 
   const handleSubmit = e => {
-    console.log("submitted");
     e.preventDefault();
   };
 
-  useEffect(() => {
-    const findUser = async () => {
-      try {
-        const response = await post({
-          url: "/signup/add-user",
-          data: {
-            username: "randy.dang@gmail.com",
-            password: "fskljasklfdjslakf"
-          }
-        });
+  // useEffect(() => {
+  //   const findUser = async () => {
+  //     try {
+  //       const response = await post({
+  //         url: "/signup/add-user",
+  //         data: {
+  //           username,
+  //           password
+  //         }
+  //       });
 
-        console.log({ response });
-      } catch (e) {
-        setError(true);
-        console.log(e);
-      }
-    };
-    findUser();
-  }, []);
+  //       console.log({ response });
+  //     } catch (e) {
+  //       setError(true);
+  //       console.log(e);
+  //     }
+  //   };
+  //   findUser();
+  // }, []);
 
   return (
     <AppContainer
@@ -57,7 +56,7 @@ const Signup = ({ devMode }) => {
                 placeholder="Email Address"
               />
               <TextField
-                value={atob(password)}
+                value={password}
                 onChange={handlePassword}
                 styleName="login-input"
                 placeholder="Password"

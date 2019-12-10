@@ -1,10 +1,13 @@
 const express = require("express");
+const passport = require("passport");
 const routes = require("./routes/index.route");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const client = require("./config/mongodb");
-const port = process.env.PORT || 5000;
 const db = require("./config/mongodb");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+// const { resolve } = req;
+
+const port = process.env.PORT || 5000;
+
 const app = express();
 
 // Express Configuration
@@ -12,6 +15,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use(passport.initialize());
+// app.use(passport.session());
 
 // Mount the routes
 

@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const User = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
   username: {
     type: String,
     required: true
@@ -12,8 +18,9 @@ const User = new mongoose.Schema({
 });
 
 User.statics = {
-  async findUser(username) {
-    const query = { username };
+  async findUser(username, password) {
+    const query = { username, password };
+
     try {
       return await this.findOne(query);
     } catch (e) {
@@ -33,7 +40,7 @@ User.statics = {
   async addUser(username, password) {
     const query = { username, password };
     try {
-      const user = await this.findOne({ username: "sjklfjdkfjladsjf" });
+      const user = await this.findOne(query);
 
       console.log({ user });
       return user;
