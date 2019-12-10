@@ -14,7 +14,8 @@ const User = new mongoose.Schema({
   password: {
     type: String,
     required: false
-  }
+  },
+  drinks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Drinks" }]
 });
 
 User.statics = {
