@@ -42,7 +42,7 @@ module.exports = {
     }
 
     try {
-      const allDrinks = await Drinks.find(query, projection);
+      const allDrinks = await Drinks.find(query);
 
       res.send({ status: 200, response: allDrinks });
     } catch (e) {

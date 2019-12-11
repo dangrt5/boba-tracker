@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AppContainer from "../components/AppContainer/AppContainer";
 import { post } from "../shared/request";
+import milkTea from "../shared/images/milk-tea.svg";
+import "./pages.scss";
 
 const Dashboard = ({ user }) => {
   const [drinks, setDrinks] = useState([]);
@@ -24,11 +26,15 @@ const Dashboard = ({ user }) => {
   }, []);
 
   const displayDrinks = drinks =>
-    drinks.map(el => (
-      <div>
+    drinks.map((el, index) => (
+      <div styleName="list-item" key={index}>
+        <div styleName="item-detail">
+          <img src={milkTea} alt="Boba" />
+          <p>{el.quantity}</p>
+        </div>
         <p>{el.name}</p>
-        <p>{el.quantity}</p>
-        <p>${el.price}</p>
+
+        <p>${el.price.toFixed(2)}</p>
       </div>
     ));
 
@@ -41,9 +47,11 @@ const Dashboard = ({ user }) => {
           <div>
             <h4>Welcome {user.firstName}</h4>
 
-            <p>Here are the drinks that you have drink already</p>
+            <p style={{ marginBottom: "8px" }}>
+              Here are the drinks that you have drink already
+            </p>
 
-            {drinks.length > 0 && displayDrinks(drinks)}
+            <div>{drinks.length > 0 && displayDrinks(drinks)}</div>
           </div>
         );
       }}
