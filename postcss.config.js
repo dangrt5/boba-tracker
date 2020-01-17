@@ -8,5 +8,10 @@
 // };
 
 module.exports = {
-  plugins: [require("precss"), require("autoprefixer")]
+  plugins: [
+    require("postcss-import"),
+    require("postcss-nested"),
+    require("autoprefixer"),
+    require("precss")
+  ]
 };

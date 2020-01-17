@@ -1,8 +1,6 @@
 const User = require("../models/users.model");
 const sha256 = require("js-sha256");
 const createError = require("http-errors");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body;
