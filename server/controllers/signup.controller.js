@@ -27,8 +27,22 @@ const addUser = async (req, res, next) => {
     }
     res.json(user);
   });
-
-  // console.log({ response });
 };
 
-module.exports = { addUser };
+const deleteUser = async (req, res, next) => {
+  const { username } = req.body;
+
+  if (!username) {
+    return next(createError(500, "No username inputted"));
+  }
+
+  try {
+    await User.deleteOne({ username });
+    res.send({ status: 200, response: "Successfully deleted user from db" });
+  } catch (e) {
+    console.log({ e });
+    return next(createError(500, "Error deleting user from db"));
+  }
+};
+
+module.exports = { addUser, deleteUser };

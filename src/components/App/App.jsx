@@ -7,6 +7,8 @@ const HomePage = loadable(() => import("../../pages/Home"));
 const Login = loadable(() => import("../../pages/Login"));
 const Signup = loadable(() => import("../../pages/Signup"));
 const Dashboard = loadable(() => import("../../pages/Dashboard"));
+const AddDrink = loadable(() => import("../../pages/AddDrink"));
+
 export const devMode = process.env.NODE_ENV === "development";
 
 const App = () => {
@@ -32,6 +34,11 @@ const App = () => {
           exact
           path="/dashboard"
           render={props => <Dashboard {...props} />}
+        />
+        <AuthorizedRoute
+          exact
+          path="/add-drink"
+          render={props => <AddDrink {...props} />}
         />
       </Switch>
     </Router>
