@@ -44,6 +44,11 @@
   }
 }
 
+.total-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .form-container {
   display: flex;
   align-items: center;

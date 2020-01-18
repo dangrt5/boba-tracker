@@ -7,28 +7,29 @@ module.exports = {
   },
 
   addDrink: async (req, res, next) => {
-    const { name, price, quantity, user } = req.body;
+    const { drinkName, price, location, user } = req.body;
 
-    if (!name || !price || !quantity || !user) {
+    if (!drinkName || !price || !location || !user) {
       return next(createError(500, "Fields are incomplete"));
     }
 
     const newDrink = new Drinks();
-    newDrink.name = name;
+    newDrink.drinkName = drinkName;
     newDrink.price = price;
-    newDrink.quantity = quantity;
+    newDrink.location = location;
     newDrink.user = user;
 
     try {
       await newDrink.save((err, drink) => {
         if (err) {
-          return next(createError(500, "error adding new drink to db"));
+          return next(createError("error adding new drink to db"));
         }
 
-        res.send({ status: 200, response: `${name} added to db!` });
+        res.send({ status: 200, response: `${drinkName} added to db!` });
       });
     } catch (e) {
-      return next(createError(400, "Error"));
+      console.log(e);
+      return next(createError(500, "error adding new drink to db"));
     }
   },
 

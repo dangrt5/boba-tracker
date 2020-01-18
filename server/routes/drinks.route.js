@@ -6,7 +6,7 @@ const {
 } = require("../controllers/drinks.controller");
 const router = express.Router();
 
-router.route("/").post(addDrink);
+router.route("/add-drink").post(addDrink);
 
 router.route("/status-check").get(healthCheck);
 

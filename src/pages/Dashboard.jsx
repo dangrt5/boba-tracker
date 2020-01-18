@@ -27,18 +27,34 @@ const Dashboard = ({ user }) => {
     fetchData();
   }, []);
 
+  const sentenceCase = str => {
+    str = str.split(" ");
+    str = str.map(
+      word => `${word.substr(0, 1).toUpperCase()}${word.substr(1)}`
+    );
+
+    return str.join(" ");
+  };
+
   const displayDrinks = drinks =>
     drinks.map((el, index) => (
       <div styleName="list-item" key={index}>
         <div styleName="item-detail">
           <img src={milkTea} alt="Boba" />
-          <p>{el.quantity}</p>
         </div>
-        <p>{el.name}</p>
+        <p>{sentenceCase(el.drinkName)}</p>
 
         <p>${el.price.toFixed(2)}</p>
       </div>
     ));
+
+  const displayTotalPrice = drinks => {
+    const total = drinks.reduce((acc, val) => {
+      return (acc = (parseFloat(acc) + parseFloat(val.price)).toFixed(2));
+    }, 0);
+
+    return total;
+  };
 
   return (
     <AppContainer
@@ -59,7 +75,13 @@ const Dashboard = ({ user }) => {
               Here are the drinks that you have drank already
             </p>
 
-            <div>{drinks.length > 0 && displayDrinks(drinks)}</div>
+            {drinks.length > 0 && <div>{displayDrinks(drinks)}</div>}
+
+            {drinks.length > 0 && (
+              <div styleName="total-container">
+                <span>Total:</span> {` $${displayTotalPrice(drinks)}`}
+              </div>
+            )}
           </div>
         );
       }}
