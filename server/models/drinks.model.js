@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Drinks = new mongoose.Schema(
   {
-    name: {
+    drinkName: {
       type: String,
       required: true
     },
@@ -10,8 +10,8 @@ const Drinks = new mongoose.Schema(
       type: Number,
       required: true
     },
-    quantity: {
-      type: Number,
+    location: {
+      type: String,
       required: true
     },
     user: {
