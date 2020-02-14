@@ -4,7 +4,6 @@ import { user, isAuthenticated } from "../../shared/auth";
 import { pathOr } from "ramda";
 
 const AuthorizedRoute = ({ render: Component, ...rest }) => {
-  console.log({ user, isAuthenticated, rest });
   return (
     <Route
       {...rest}

@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(express.static(join(__dirname, "..", "dist")));
+app.use(express.static(join(__dirname, "..", "public")));
 
 // Express Configuration
 
@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use("/api", routes);
 
 app.get("*", (req, res) => {
-  res.sendFile(join(__dirname, +"../dist/index.html"));
+  res.sendFile(join(__dirname, "../dist/index.html"));
 });
 
 // Listen at certain port
